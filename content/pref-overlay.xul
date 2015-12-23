@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<prefwindow id="relativeIncludes-prefs"
+     title="Relative Includes Preferences"
+	 xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<prefpane id="relativeIncludes-pane" label="Relative Includes Preferences">
+		<preferences>
+			<preference id="pref_exclude" name="extensions.relativeIncludes.exclude" type="string"/>
+		</preferences>
+		
+		<label value="Directories to exclude (comma Separated)"/>
+		<textbox id="exclude" preference="pref_exclude" />
+		
+	</prefpane>
+
+</prefwindow>

@@ -1,0 +1,5 @@
+content relativeIncludes content/
+overlay chrome://komodo/content/komodo.xul chrome://relativeIncludes/content/overlay.xul
+#overlay chrome://komodo/content/pref/pref-html.xul chrome://relativeIncludes/content/pref-overlay.xul
+overlay chrome://komodo/content/commandsOverlay.xul chrome://relativeIncludes/content/commandsOverlay.xul
+skin relativeIncludes classic/1.0 skin/

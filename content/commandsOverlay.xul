@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<overlay id="fileActionsCommandOverlay"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		 
+   <broadcasterset id="broadcasterset_global">
+      <broadcaster
+        id="cmd_relative_includes_insert_from_file"
+        key="key_cmd_relative_includes_insert_from_file"
+        desc="Relative Includes: Insert from file"
+        oncommand="relativeFromFile();"/>
+		<broadcaster
+        id="cmd_relative_includes_insert_from_base"
+        key="key_cmd_relative_includes_insert_from_base"
+        desc="Relative Includes: Insert from base"
+        oncommand="relativeFromBase();"/>
+   </broadcasterset>
+
+</overlay>
