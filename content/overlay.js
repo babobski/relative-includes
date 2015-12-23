@@ -196,6 +196,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					relpath = relpath.replace(/\.\.\//, '');
 				}
 				return relpath;
+			} else {
+				return relpath;
 			}
 		} else {
 			return relpath;
