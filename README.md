@@ -15,5 +15,7 @@ This will open a filepicker from the base of the current project, and will gener
 ## Excluding folders
 You can exclude folders true the addon option screen(`Add-ons > Relative Includes > options`), this can be useful when you compiling less/scss and when you have your files not at the same level as the compiled result.
 
+![screenshot](screenshot2.png)
+
 ## Key bindings
 Both actions are available as key binging `preferences > key bindings >relative..`

@@ -91,10 +91,14 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var relpath = remoteRelativePath(dir, path.file);
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
-						
 						relpath = self._filter_excludes(dir, relpath);
-						editor.insertText(editor.currentPos, relpath);
-						editor.gotoPos(editor.currentPos + relpath.length);
+						var selction = editor.selText;
+						if (selction.length > 0) {
+							editor.replaceSel(relpath);
+						} else {
+							editor.insertText(editor.currentPos, relpath);
+							editor.gotoPos(editor.currentPos + relpath.length);
+						}
 					}
 
 				}
@@ -106,8 +110,13 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
 						relpath = self._filter_excludes(dir, relpath);
-						editor.insertText(editor.currentPos, relpath);
-						editor.gotoPos(editor.currentPos + relpath.length);
+						var selction = editor.selText;
+						if (selction.length > 0) {
+							editor.replaceSel(relpath);
+						} else {
+							editor.insertText(editor.currentPos, relpath);
+							editor.gotoPos(editor.currentPos + relpath.length);
+						}
 					}
 				}
 
@@ -147,8 +156,13 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var relpath = remoteRelativePath(dir, path.file);
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
-						editor.insertText(editor.currentPos, relpath);
-						editor.gotoPos(editor.currentPos + relpath.length);
+						var selction = editor.selText;
+						if (selction.length > 0) {
+							editor.replaceSel(relpath);
+						} else {
+							editor.insertText(editor.currentPos, relpath);
+							editor.gotoPos(editor.currentPos + relpath.length);
+						}
 					}
 				}
 			} else {
@@ -158,8 +172,13 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var relpath = relativePath(ko.uriparse.URIToPath(dir), path);
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
-						editor.insertText(editor.currentPos, relpath);
-						editor.gotoPos(editor.currentPos + relpath.length);
+						var selction = editor.selText;
+						if (selction.length > 0) {
+							editor.replaceSel(relpath);
+						} else {
+							editor.insertText(editor.currentPos, relpath);
+							editor.gotoPos(editor.currentPos + relpath.length);
+						}
 					}
 				}
 			}
