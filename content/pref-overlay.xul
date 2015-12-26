@@ -4,6 +4,8 @@
 <prefwindow id="relativeIncludes-prefs"
      title="Relative Includes Preferences"
 	 xmlns:html="http://www.w3.org/1999/xhtml"
+	 width="500"
+	 height="160"
      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	
 	<prefpane id="relativeIncludes-pane" label="Relative Includes Preferences">
