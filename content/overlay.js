@@ -237,7 +237,7 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 			return true;
 		} else if (/^sftp:\/\//i.test(url)) {
 			return true;
-		} else if (/[a-z0-9]+@/i.test(url)) {
+		} else if (/[a-z0-9-_]+@/i.test(url)) {
 			return true;
 		}
 		
