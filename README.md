@@ -2,7 +2,8 @@
 Generates relative url from file selected
 
 ## Widget
-This addon will add a widget to the sidebar with two buttons `Relative from file` and `Relative from base`.
+This addon will add a widget to the sidebar with two buttons `Relative from file` and `Relative from base`.  
+To combine widgets with each other, right-click on the tab and use the `Combine With Tab` function.
 
 ![screenshot](screenshot.png)
 
@@ -18,4 +19,4 @@ You can exclude folders true the addon option screen(`Add-ons > Relative Include
 ![screenshot](screenshot2.png)
 
 ## Key bindings
-Both actions are available as key binging `preferences > key bindings >relative..`
+Both actions are available as key binging `preferences > key bindings > relative..`
