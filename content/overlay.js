@@ -79,7 +79,13 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 			notify.send('No file selected', 'tools');
 			return false;
 		}
+		
 		var doc = currentView.koDoc || currentView.document; // Support both K6- and K7+
+		
+		if (doc.baseName === 'quickstart.xml#view-quickstart') {
+			notify.send('No file selected', 'tools');
+			return false;
+		}
 
 		try {
 			var cwd = doc.file.URI;
@@ -135,6 +141,11 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		}
 		var doc = currentView.koDoc || currentView.document; // Support both K6- and K7+
 		var currentProject = ko.projects.manager.currentProject;
+		
+		if (doc.baseName === 'quickstart.xml#view-quickstart') {
+			notify.send('No file selected', 'tools');
+			return false;
+		}
 		
 		if (currentProject === null) {
 			notify.send('No current project selected', 'tools');
