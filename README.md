@@ -1,11 +1,13 @@
 # relative-includes
-Generates relative url from file selected
+Generates relative url, from current file or the base of the current project.
+
+![screenshot](screenshot.png)
 
 ## Widget
 This addon will add a widget to the sidebar with two buttons `Relative from file` and `Relative from base`.  
-To combine widgets with each other, right-click on the tab and use the `Combine With Tab` function.
+To combine widgets in the sidepane with each other, right-click on the tab and use the "Combine With Tab" function.
 
-![screenshot](screenshot.png)
+![screenshot](screenshot1.png)
 
 ## Relative from file
 This will open a filefilepicker from the location of the current file, and will generate a relative url from the location of the current file.
@@ -20,3 +22,5 @@ You can exclude folders true the addon option screen(`Add-ons > Relative Include
 
 ## Key bindings
 Both actions are available as key binging `preferences > key bindings > relative..`
+
+![screenshot](screenshot3.png)
