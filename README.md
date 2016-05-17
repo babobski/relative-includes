@@ -1,6 +1,9 @@
 # relative-includes
 Generates relative url, from current file or the base of the current project.
 
+Updated addon to work with komodo 10,  
+for komodo 9 the latest version can be found [here](https://github.com/babobski/relative-includes/releases/tag/1.1)
+
 ![screenshot](screenshot.png)
 
 ## Widget
