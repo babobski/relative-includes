@@ -12,14 +12,7 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		.getService(Components.interfaces.nsIPrefService).getBranch("extensions.relativeIncludes."),
 		notify = require("notify/notify");
 		
-	if (!('relativeIncludes' in ko)) ko.extensions = {}; 
-	var myExt = "relativeIncludes@komodoeditide.com" ; 
-	if (!(myExt in ko.extensions)) ko.extensions[myExt] = {};
-	if (!('myapp' in ko.extensions[myExt])) ko.extensions[myExt].myapp = {};
-	var relativeIncludesData = ko.extensions[myExt].myapp;
-
-
-
+		
 	function relativePath(fromPath, toPath) {
 		var nsFileFrom = Components.classes["@mozilla.org/file/local;1"]
 			.createInstance(Components.interfaces.nsILocalFile);
