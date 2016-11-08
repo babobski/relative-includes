@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="chrome://relativeIncludes/skin/relativeIncludes.css" type="text/css"?>
 <overlay id="HTMLtoolbox" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script type="application/x-javascript" src="chrome://relativeIncludes/content/overlay.js" />
 	
+	
 	<ko-pane id="workspace_left_area">
-    <browser type="ko-widget" id="frelativeIncludesViewbox" label="Relative Includes"
+    <browser type="ko-widget" id="relativeIncludesViewbox" label="Relative Includes"
              position="10"
              tab_oncommand=""
              tab_onfocus=""

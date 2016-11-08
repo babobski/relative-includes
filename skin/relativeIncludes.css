@@ -18,3 +18,12 @@ prefwindow:root /* override :root from above */ {
 prefwindow > prefpane {
 	padding: 10px;
 }
+
+#workspace_left_area[type="icons"] tab[widget="relativeIncludesViewbox"] .tab-icon,
+#workspace_right_area[type="icons"] tab[widget="relativeIncludesViewbox"] .tab-icon {
+	width: 14px !important;
+	height: 14px !important;
+	visibility: visible !important;
+	background-image: url('koicon://ko-svg/chrome/icomoon/skin/file-xml.svg') !important;
+}
+
