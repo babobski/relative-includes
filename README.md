@@ -1,7 +1,7 @@
 # relative-includes
 Generates relative url, from current file or the base of the current project.
 
-Updated addon to work with komodo 11,  
+Updated addon to work with komodo 10 - 11,  
 for komodo 9 the latest version can be found [here](https://github.com/babobski/relative-includes/releases/tag/1.1)
 
 ![screenshot](screenshot.jpg)
@@ -24,7 +24,7 @@ You can exclude folders true the addon option screen(`Add-ons > Relative Include
 ![screenshot](screenshot2.jpg)
 
 ## Hiding panel button
-In the preferences menu you can choose to disable the panel button ( if you don't need it ),
+In the preferences menu you can choose to disable the panel button ( if you don't need it ).
 
 ## Key bindings
 Both actions are available as key binging `preferences > key bindings > relative..`
