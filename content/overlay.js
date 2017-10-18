@@ -3,7 +3,7 @@
  */
 if (typeof(extensions) === 'undefined') extensions = {};
 if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncludes = {
-	version: '2.2'
+	version: '3.0'
 };
 
 (function() {
@@ -86,7 +86,7 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 			if (self.isRemote(dir)) {
 				var path = ko.filepicker.remoteFileBrowser(dir);
 
-				if (path) {
+				if (path !== null) {
 					var relpath = remoteRelativePath(dir, path.file);
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
@@ -104,7 +104,7 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 			} else {
 				var path = ko.filepicker.browseForFile(ko.uriparse.URIToPath(dir));
 
-				if (path) {
+				if (path !== null) {
 					var relpath = relativePath(ko.uriparse.URIToPath(dir), path);
 					var editor = currentView.scimoz;
 					if (relpath !== null) {
@@ -247,5 +247,24 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		
 		return false;
 	}
+	
+	this.hideBtn = function() {
+		var hide = prefs.getBoolPref('hideButton');
+		if (hide) {
+			var space = document.getElementById('workspace_left_area');
+			if (space !== null) {
+				var tabsCont = space.tabs;
+				var tabs = tabsCont.children;
+				
+				for (var i = 0; i < tabs.length; i++) {
+					if (tabs[i].label == 'Relative Includes') {
+						tabs[i].style.display = 'none';
+					}
+				}
+			}
+		}
+	}
+	
+	window.addEventListener('DOMContentLoaded', self.hideBtn);
 	
 }).apply(extensions.relativeIncludes);

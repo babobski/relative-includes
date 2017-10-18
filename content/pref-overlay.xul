@@ -8,15 +8,26 @@
 	 xmlns:html="http://www.w3.org/1999/xhtml"
 	 width="500"
 	 height="160"
+	 hidechrome="true"
      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	
-	<prefpane id="relativeIncludes-pane" label="Relative Includes Preferences">
+	<prefpane id="relativeIncludes-pane" label="Relative Includes Preferences" style="padding-top: 0;">
 		<preferences>
 			<preference id="pref_exclude" name="extensions.relativeIncludes.exclude" type="string"/>
+			<preference id="pref_hideBtn" name="extensions.relativeIncludes.hideButton" type="bool"/>
 		</preferences>
+		
+		<titlebar id="relativeIncludesTitleBar" height="30" width="100%"  style="background: transparent;">
+			<label flex="1" style="text-align: center; padding: 7px 0; pointer-events: none;">
+				Relative Includes
+			</label>
+		</titlebar>
+		
 		
 		<label value="Directories to exclude (comma Separated)"/>
 		<textbox id="exclude" preference="pref_exclude" />
+		
+		<checkbox id="hideBtn" preference="pref_hideBtn" label="Hide panel button ( requires a reboot )" />
 		
 	</prefpane>
 
