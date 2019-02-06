@@ -3,7 +3,7 @@
  */
 if (typeof(extensions) === 'undefined') extensions = {};
 if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncludes = {
-	version: '3.0'
+	version: '3.1'
 };
 
 (function() {
