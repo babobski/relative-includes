@@ -26,6 +26,9 @@ You can exclude folders true the addon option screen(`Add-ons > Relative Include
 ## Hiding panel button
 In the preferences menu you can choose to disable the panel button ( if you don't need it ).
 
+## Removing extension if file is SCSS/SASS  
+In the preferences menu you can choose if you want to remove the file extension if the file is SCSS or SASS (enabled by default).  
+
 ## Key bindings
 Both actions are available as key binging `preferences > key bindings > relative..`
 
