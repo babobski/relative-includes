@@ -15,6 +15,7 @@
 		<preferences>
 			<preference id="pref_exclude" name="extensions.relativeIncludes.exclude" type="string"/>
 			<preference id="pref_hideBtn" name="extensions.relativeIncludes.hideButton" type="bool"/>
+			<preference id="pref_removeExt" name="extensions.relativeIncludes.removeExt" type="bool"/>
 		</preferences>
 		
 		<titlebar id="relativeIncludesTitleBar" height="30" width="100%"  style="background: transparent;">
@@ -28,6 +29,8 @@
 		<textbox id="exclude" preference="pref_exclude" />
 		
 		<checkbox id="hideBtn" preference="pref_hideBtn" label="Hide panel button ( requires a reboot )" />
+		
+		<checkbox id="hideBtn" preference="pref_removeExt" label="Remove file extension if is SASS or SCSS file" />
 		
 	</prefpane>
 

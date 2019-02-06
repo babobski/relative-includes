@@ -26,17 +26,17 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 	function remoteRelativePath(fromPath, toPath) {
 
 		var basePaths = fromPath.split('\/'),
-		toPaths = toPath.toString().split('\/'),
-		newDirs = 0,
-		diffDirs = 0,
-		totalDirs = 0,
-		backDirs = 0,
-		baseLength = basePaths.length,
-		toLength = toPaths.length,
-		newRoute = [],
-		output = '',
-		x = '',
-		y = '';
+			toPaths = toPath.toString().split('\/'),
+			newDirs = 0,
+			diffDirs = 0,
+			totalDirs = 0,
+			backDirs = 0,
+			baseLength = basePaths.length,
+			toLength = toPaths.length,
+			newRoute = [],
+			output = '',
+			x = '',
+			y = '';
 
 
 		for (i = 0; i < toPaths.length; i++) {
@@ -67,7 +67,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 	}
 
 	relativeFromFile = function() {
-		var currentView = ko.views.manager.currentView;
+		var currentView = ko.views.manager.currentView,
+			removeExt = prefs.getBoolPref('removeExt');
 		if (currentView === null) {
 			notify.send('No file selected', 'tools');
 			return false;
@@ -81,16 +82,19 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		}
 
 		try {
-			var cwd = doc.file.URI;
-			var dir = cwd.substr(0, cwd.lastIndexOf('\/') + 1);
+			var cwd = doc.file.URI,
+				dir = cwd.substr(0, cwd.lastIndexOf('\/') + 1);
 			if (self.isRemote(dir)) {
 				var path = ko.filepicker.remoteFileBrowser(dir);
 
 				if (path !== null) {
-					var relpath = remoteRelativePath(dir, path.file);
-					var editor = currentView.scimoz;
+					var relpath = remoteRelativePath(dir, path.file),
+						editor = currentView.scimoz;
 					if (relpath !== null) {
 						relpath = self._filter_excludes(dir, relpath);
+						if (removeExt) {
+							relpath = self._remove_ext(relpath);
+						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
 							editor.replaceSel(relpath);
@@ -105,10 +109,13 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 				var path = ko.filepicker.browseForFile(ko.uriparse.URIToPath(dir));
 
 				if (path !== null) {
-					var relpath = relativePath(ko.uriparse.URIToPath(dir), path);
-					var editor = currentView.scimoz;
+					var relpath = relativePath(ko.uriparse.URIToPath(dir), path),
+						editor = currentView.scimoz;
 					if (relpath !== null) {
 						relpath = self._filter_excludes(dir, relpath);
+						if (removeExt) {
+							relpath = self._remove_ext(relpath);
+						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
 							editor.replaceSel(relpath);
@@ -127,7 +134,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 	}
 
 	relativeFromBase = function() {
-		var currentView = ko.views.manager.currentView;
+		var currentView = ko.views.manager.currentView,
+			removeExt = prefs.getBoolPref('removeExt');
 		if (currentView === null) {
 			notify.send('No file selected', 'tools');
 			return false;
@@ -157,9 +165,12 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 				var path = ko.filepicker.remoteFileBrowser(dir);
 
 				if (path) {
-					var relpath = remoteRelativePath(dir, path.file);
-					var editor = currentView.scimoz;
+					var relpath = remoteRelativePath(dir, path.file),
+						editor = currentView.scimoz;
 					if (relpath !== null) {
+						if (removeExt) {
+							relpath = self._remove_ext(relpath);
+						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
 							editor.replaceSel(relpath);
@@ -173,9 +184,12 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 				var path = ko.filepicker.browseForFile(ko.uriparse.URIToPath(dir));
 
 				if (path) {
-					var relpath = relativePath(ko.uriparse.URIToPath(dir), path);
-					var editor = currentView.scimoz;
+					var relpath = relativePath(ko.uriparse.URIToPath(dir), path),
+						editor = currentView.scimoz;
 					if (relpath !== null) {
+						if (removeExt) {
+							relpath = self._remove_ext(relpath);
+						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
 							editor.replaceSel(relpath);
@@ -194,10 +208,10 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 	
 	this._filter_excludes = function(url, relpath){
 		
-		var excludes = prefs.getCharPref('exclude');
-		var base = ko.uriparse.URIToPath(url);
-		var basePaths = base.indexOf('/') !== -1 ? base.split('/') : base.split('\\');
-		var count = 0;
+		var excludes = prefs.getCharPref('exclude'),
+			base = ko.uriparse.URIToPath(url),
+			basePaths = base.indexOf('/') !== -1 ? base.split('/') : base.split('\\'),
+			count = 0;
 		
 		if (excludes.length > 0) {
 			if (/,/.test(excludes)) {
@@ -227,6 +241,14 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		}
 	}
 	
+	this._remove_ext = function(url) {
+		var patern = /(\.scss$|\.sass$)/;
+		if (patern.test(url)) {
+			url = url.replace(/(\.scss$|\.sass$)/i, '');
+		}
+		return url;
+	}
+	
 	this._in_array = function (search, array) {
 		for (i = 0; i < array.length; i++) {
 			if(array[i] ==search ) {
@@ -253,8 +275,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		if (hide) {
 			var space = document.getElementById('workspace_left_area');
 			if (space !== null) {
-				var tabsCont = space.tabs;
-				var tabs = tabsCont.children;
+				var tabsCont = space.tabs,
+					tabs = tabsCont.children;
 				
 				for (var i = 0; i < tabs.length; i++) {
 					if (tabs[i].label == 'Relative Includes') {
