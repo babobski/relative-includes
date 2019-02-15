@@ -3,7 +3,7 @@
  */
 if (typeof(extensions) === 'undefined') extensions = {};
 if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncludes = {
-	version: '3.1'
+	version: '3.2'
 };
 
 (function() {
@@ -68,9 +68,14 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 
 	relativeFromFile = function() {
 		var currentView = ko.views.manager.currentView,
-			removeExt = prefs.getBoolPref('removeExt');
+			lang		= currentView.language,
+			removeExt 	= prefs.getBoolPref('removeExt');
 		if (currentView === null) {
 			notify.send('No file selected', 'tools');
+			return false;
+		}
+		
+		if (!file) {
 			return false;
 		}
 		
@@ -92,8 +97,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 						editor = currentView.scimoz;
 					if (relpath !== null) {
 						relpath = self._filter_excludes(dir, relpath);
-						if (removeExt) {
-							relpath = self._remove_ext(relpath);
+						if ((lang === 'SCSS' || lang === 'Sass') && removeExt) {
+							relpath = self._scss_ext(relpath);
 						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
@@ -113,8 +118,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 						editor = currentView.scimoz;
 					if (relpath !== null) {
 						relpath = self._filter_excludes(dir, relpath);
-						if (removeExt) {
-							relpath = self._remove_ext(relpath);
+						if ((lang === 'SCSS' || lang === 'Sass') && removeExt) {
+							relpath = self._scss_ext(relpath);
 						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
@@ -135,7 +140,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 
 	relativeFromBase = function() {
 		var currentView = ko.views.manager.currentView,
-			removeExt = prefs.getBoolPref('removeExt');
+			lang		= currentView.language,
+			removeExt 	= prefs.getBoolPref('removeExt');
 		if (currentView === null) {
 			notify.send('No file selected', 'tools');
 			return false;
@@ -153,10 +159,10 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 			return false;
 		}
 
-		var prefs = currentProject.prefset,
+		var currProjectPrefs = currentProject.prefset,
 			projectFileDir =
 			ko.interpolate.activeProjectPath().replace(/[\/\\][^\/\\]+$/, ''),
-			liveImportDir = prefs.hasStringPref('import_dirname') ? prefs.getStringPref('import_dirname') : ''; // or set to empty string
+			liveImportDir = currProjectPrefs.hasStringPref('import_dirname') ? currProjectPrefs.getStringPref('import_dirname') : ''; // or set to empty string
 		var projectDir = liveImportDir ? (liveImportDir.match(/(\/\/|[a-zA-Z])/) ? liveImportDir : (projectFileDir + '/' + liveImportDir)) : projectFileDir; 
 
 		try {
@@ -168,8 +174,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var relpath = remoteRelativePath(dir, path.file),
 						editor = currentView.scimoz;
 					if (relpath !== null) {
-						if (removeExt) {
-							relpath = self._remove_ext(relpath);
+						if ((lang === 'SCSS' || lang === 'Sass') && removeExt) {
+							relpath = self._scss_ext(relpath);
 						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
@@ -187,8 +193,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 					var relpath = relativePath(ko.uriparse.URIToPath(dir), path),
 						editor = currentView.scimoz;
 					if (relpath !== null) {
-						if (removeExt) {
-							relpath = self._remove_ext(relpath);
+						if ((lang === 'SCSS' || lang === 'Sass') && removeExt) {
+							relpath = self._scss_ext(relpath);
 						}
 						var selction = editor.selText;
 						if (selction.length > 0) {
@@ -241,7 +247,7 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 		}
 	}
 	
-	this._remove_ext = function(url) {
+	this._scss_ext = function(url) {
 		var patern = /(\.scss$|\.sass$)/;
 		if (patern.test(url)) {
 			url = url.replace(/(\.scss$|\.sass$)/i, '');
