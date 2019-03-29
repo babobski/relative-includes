@@ -68,6 +68,8 @@ if (typeof(extensions.relativeIncludes) === 'undefined') extensions.relativeIncl
 
 	relativeFromFile = function() {
 		var currentView = ko.views.manager.currentView,
+            doc         = currentView.koDoc,
+            file        = doc.file,
 			lang		= currentView.language,
 			removeExt 	= prefs.getBoolPref('removeExt');
 		if (currentView === null) {
